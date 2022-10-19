@@ -1,10 +1,10 @@
-package com.springbootrestcilent.restcilent;
+package com.springboot.restclient;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
 @SpringBootTest
-class SpringBootRestCilentApplicationTests {
+class RestClientApplicationTests {
 
 	@Test
 	void contextLoads() {
