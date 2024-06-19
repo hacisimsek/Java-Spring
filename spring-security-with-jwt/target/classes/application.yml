@@ -1,0 +1,11 @@
+spring:
+  application:
+    name: spring-security-with-jwt
+  datasource:
+    hikari:
+      pool-name: spring-security-with-jwt
+  jpa:
+    hibernate:
+      ddl-auto: update
+jwt:
+  secret: ""
