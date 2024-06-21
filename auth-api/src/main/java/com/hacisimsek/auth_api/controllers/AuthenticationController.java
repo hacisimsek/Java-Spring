@@ -7,6 +7,8 @@ import com.hacisimsek.auth_api.responses.LoginResponse;
 import com.hacisimsek.auth_api.services.AuthenticationService;
 import com.hacisimsek.auth_api.services.JwtService;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -16,6 +18,8 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("/auth")
 @RestController
 public class AuthenticationController {
+    private static final Logger log = LoggerFactory.getLogger(AuthenticationController.class);
+
     private final JwtService jwtService;
 
     private final AuthenticationService authenticationService;
@@ -34,8 +38,10 @@ public class AuthenticationController {
 
     @PostMapping("/login")
     public ResponseEntity<LoginResponse> authenticate(@RequestBody LoginUserDto loginUserDto) {
-        User authenticatedUser = authenticationService.authenticate(loginUserDto);
 
+        log.info("Login request for user: {}", loginUserDto.getEmail());
+
+        User authenticatedUser = authenticationService.authenticate(loginUserDto);
         String jwtToken = jwtService.generateToken(authenticatedUser);
 
         LoginResponse loginResponse = new LoginResponse()
